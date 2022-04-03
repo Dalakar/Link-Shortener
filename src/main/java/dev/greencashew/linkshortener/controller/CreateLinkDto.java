@@ -1,9 +1,14 @@
 package dev.greencashew.linkshortener.controller;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDate;
 
 public record CreateLinkDto (
-    String id,
+        @Schema(description = "Identifier/alias to link. Used for redirection.",
+                example = "link-alias", required = true)
+
+        String id,
     String email,
     String targetUrl,
     LocalDate expirationDate){
