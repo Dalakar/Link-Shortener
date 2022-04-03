@@ -12,8 +12,16 @@ public record CreateLinkDto (
     String email,
     String targetUrl,
     LocalDate expirationDate){
+
     LinkDto toDto(){
         return new LinkDto(id, email, targetUrl, expirationDate, 0);
         }
+
+    //	@RequestMapping
+//	@GetMapping
+//	public void redirectLink(
+//			@PathVariable String id, HttpServletResponse httpServletResponse) throws IOException {
+//		httpServletResponse.sendRedirect("https://github.com/greencashew/warsztaty-podstawy-springa");}
+
     }
 
