@@ -1,13 +1,19 @@
 package dev.greencashew.linkshortener.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.time.LocalDate;
 
-public record LinkDto(String id, String email, String targetUrl, LocalDate expirationDate, int liczba){
+public record LinkDto(String id, @JsonIgnore String email, String targetUrl, LocalDate expirationDate, int visits){
 
-//    LinkDto toDto(){
-//        return new LinkDto(id, email, targetUrl, expirationDate, 0);
-//    }
-
+    public String getShortenedLink() {
+        return ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/s/{id}")
+                .buildAndExpand(id)
+                .toUriString();
+    }
 
 }
 
